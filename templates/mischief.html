@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="margin: 0;" class="bg-black">
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/static/three/build/three.module.js"
+        }
+    }
+</script>
+<script src="/static/jquery-3.6.0.min.js"></script>
+<script src="/static/socket.io.min.js"></script>
+
+<script src="/static/human-video.js"></script>
+<script type="module" src="/static/mischief.js"></script>
+
+<div id="powered-by" class="absolute top-0 left-0 pt-4 pl-4 text-white/60 font-mono text-xs">
+    <h5 class="pb-1">Powered by:</h5>
+    <ul class="list-disc list-inside">
+        <li>OpenAI/ GPT-3</li>
+        <li>THREE.js</li>
+        <li>Amazon/ Polly & Transcribe</li>
+        <li>Craiyon (formerly DALL·E mini)</li>
+    </ul>    
+</div>
+<div id = "control-container" class="absolute w-[400px] bottom-0 m-3 left-0">
+    <button id="click-to-play" class="hidden relative bg-black rounded border border-solid border-slate-700 p-0.5 text-slate-400 font-mono text-sm"> click-to-play </button>
+    <button id="gpt-3" class="hidden relative bg-black rounded border border-solid border-slate-700 p-0.5 text-slate-400 font-mono text-sm"> GPT-3 </button>
+    <button id="summary" class="hidden relative bg-black rounded border border-solid border-slate-700 p-0.5 text-slate-400 font-mono text-sm">summary</button>
+    <button id="talk-to-mischief" class="hidden relative bg-black rounded border border-solid border-slate-700 p-0.5 text-slate-400 font-mono text-sm"> Talk to Mischief </button>
+    <textarea name="gpt3-logos" id="gpt3-logos" rows="1" cols="20" class="resize-none p-4 mb-4 float-left bg-gray-600/10 font-mono text-sm text-green-300 border-0 outline-0 w-96"></textarea>
+    <span class="absolute flex h-4 w-4 bottom-3 right-2">
+        <span id="flicker-mischief" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span id="flicker-mischief-o" class="relative inline-flex rounded-full h-4 w-4 bg-green-300"></span>
+    </span>
+</div>
+
+<div id="conversation-container" class="absolute z-0 text-justify leading-[13px] w-[300px] p-3 right-0 h-[1000px] overflow-auto text-[12px] text-gray-800">
+</div>
+<div id="human-video-cover" class="absolute z-50 flex w-[270px] h-[270px] overflow-hidden p-0 right-[16px] bottom-[100px] justify-center">
+    <img class="opacity-20" src="/static/scan_line.png">
+</div>
+<div id="human-video" class="absolute flex w-[270px] h-[270px] overflow-hidden p-2 right-[16px] bottom-[100px] justify-center">
+    <video id="videoElement" autoplay="true" class="relative object-cover scale-[1.7] opacity-20"></video>
+</div>
+<div id="human-container" class="absolute w-[400px] p-3 right-0 bottom-0 text-sm text-gray-700">
+    <textarea name="human-logos" id="human-logos" rows="1" cols="20" class="resize-none rounded-md p-4 mb-4 float-left bg-gray-600/10 font-mono text-sm text-blue-300 border-0 outline-0 w-96"></textarea>
+    <span class="absolute flex h-4 w-4 bottom-6 left-2">
+        <span id="flicker-human" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span id="flicker-human-o"class="relative inline-flex rounded-full h-4 w-4 bg-sky-500"></span>
+    </span>
+</div>
+<svg id='image' version="1.1" xmlns="http://www.w3.org/2000/svg" class="w-0 h-0">
+    <defs>
+        <filter id="bluefill" x="0%" y="0%" width="100%" height="100%">
+            <feFlood flood-color="blue" result="A" />
+            <feColorMatrix type="matrix" in="SourceGraphic" result="B" values="1   1  0  0 1  
+                           1   1  0  0 1   
+                           1   1  0  0 1   
+                           0   .5  1  0 0
+                  " />
+            <feMerge>
+                <feMergeNode in="A" />
+                <feMergeNode in="B" />
+            </feMerge>
+        </filter>
+        <filter id="noir">
+            <feGaussianBlur stdDeviation="1.5" />
+            <feComponentTransfer>
+                <feFuncR type="discrete" tableValues="0 .1 .1 1" />
+                <feFuncG type="discrete" tableValues="0 .5 1" />
+                <feFuncB type="discrete" tableValues=".6 1 1 1" />
+            </feComponentTransfer>
+        </filter>
+    </defs>
+</svg>
+</body>
+</html>

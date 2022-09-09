@@ -1,4 +1,4 @@
-# mischief
+# Mischief
 
 由 Open AI / GPT-3 驱动
 Powered by Open AI / GPT-3
@@ -21,9 +21,9 @@ THREE.js / Blender / Flask / SQLite / JavaScript / Python
 ---
 
 我把质料放到了github，或许你有理念把它变成别的实体
-I put these material on github, maybe you have ideas to create other physical embodiment
+I put these material on github, maybe you have ideas to create other physical embodiment  
 
----
+---  
 
 Vam
 September 2022
